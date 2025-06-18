@@ -447,3 +447,42 @@ WHERE RecordID >= (SELECT COALESCE(MAX(RecordID), 0) FROM mongodb.dashboardDB.da
 
 select * from nessie."sales_data" AT BRANCH "main";
 ----
+
+
+
+[,javascript]
+----
+db.dashboardData.insertMany([{ RecordID: 20,
+Category: ["Category A", "Category B", "Category C"],
+Value: {
+firstname: "Bruno",
+lastname: "Guedes"
+},
+DateRecorded: "2023-01-01" }]);
+
+
+db.dashboardData.insertMany([{ RecordID: 10,
+Category: ["Category A", "Category B", "Category C"],
+Value: {
+firstname: "Bruno",
+lastname: "Guedes"
+},
+DateRecorded: "2023-01-01" }]);
+
+db.dashboardData.insertMany([{
+...     { RecordID: 30, Category: "Category B", Value: 150, DateRecorded: "2023-01-02" },
+...     { RecordID: 31, Category: "Category C", Value: 200, DateRecorded: "2023-01-03" },
+...     { RecordID: 32, Category: "Category A", Value: 110, DateRecorded: "2023-01-04" },
+...     { RecordID: 33, Category: "Category B", Value: 120, DateRecorded: "2023-01-05" },
+}]);
+
+
+db.dashboardData.insertMany([{ RecordID: 60,
+Category: ["Category A", "Category B", "Category C"],
+Value: {
+firstname: "Bruno",
+lastname: "Guedes"
+},
+more: true,
+DateRecorded: "2023-01-01" }]);
+----
