@@ -425,3 +425,25 @@ insert into minio.trips values(1695516137016, '0be814c3-9e6e-40bb-bdb9-cc2da6a86
 -- Dropping currency column
 ALTER TABLE minio.trips DROP COLUMN currency;
 ----
+
+{blank}
+
+[,sql]
+----
+SELECT * FROM mongodb.dashboardDB.dashboardData;
+
+drop table nessie.sales_data;
+
+CREATE TABLE nessie.sales_data AS SELECT * FROM mongodb.dashboardDB.dashboardData;
+
+SELECT COALESCE(MAX(RecordID), 0) FROM mongodb.dashboardDB.dashboardData;
+
+ALTER TABLE nessie.sales_data ADD COLUMNS (more BOOLEAN);
+
+INSERT INTO nessie.sales_data
+SELECT *
+FROM mongodb.dashboardDB.dashboardData
+WHERE RecordID >= (SELECT COALESCE(MAX(RecordID), 0) FROM mongodb.dashboardDB.dashboardData);
+
+select * from nessie."sales_data" AT BRANCH "main";
+----
