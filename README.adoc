@@ -206,7 +206,7 @@ Let's connect to the database :
 
 [,console]
 ----
-docker exec -it mongodb mongosh -u root -p dremio --authenticationDatabase admin
+docker exec -it mongodb mongosh -u root -p mongodb --authenticationDatabase admin
 ----
 
 {blank}
@@ -291,22 +291,18 @@ ALTER TABLE minio.trips DROP COLUMN currency;
 
 [,sql]
 ----
-SELECT * FROM mongodb.dashboardDB.dashboardData;
+SELECT * FROM mongodb.productsDB.products;
 
-drop table nessie.sales_data;
+CREATE TABLE nessie.products AS SELECT * FROM mongodb.productsDB.products;
 
-CREATE TABLE nessie.sales_data AS SELECT * FROM mongodb.dashboardDB.dashboardData;
+SELECT COALESCE(MAX(RecordID), 0) FROM mongodb.productsDB.products;
 
-SELECT COALESCE(MAX(RecordID), 0) FROM mongodb.dashboardDB.dashboardData;
-
-ALTER TABLE nessie.sales_data ADD COLUMNS (more BOOLEAN);
-
-INSERT INTO nessie.sales_data
+INSERT INTO nessie.products
 SELECT *
-FROM mongodb.dashboardDB.dashboardData
-WHERE RecordID >= (SELECT COALESCE(MAX(RecordID), 0) FROM mongodb.dashboardDB.dashboardData);
+FROM mongodb.productsDB.products
+WHERE RecordID >= (SELECT COALESCE(MAX(RecordID), 0) FROM mongodb.productsDB.products);
 
-select * from nessie."sales_data" AT BRANCH "main";
+select * from nessie.products AT BRANCH "main";
 ----
 
 
