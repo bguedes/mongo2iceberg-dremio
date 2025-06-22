@@ -112,37 +112,32 @@ image::images/dremio-adding-source.png[]
 In Source Setting -> General :
 
 ____
-Name : minio
+Name : nessie
+____
+____
+Nessie Endpoint URL : http://nessie:19120/api/v2
+____
+
+{blank}
+
+image::images/nessie-config1.png[]
+
+In Source Setting -> Storage :
+____
+AWS Root Path : warehouse
 ____
 ____
 AWS Access Key : admin
 ____
 ____
-AWS Access Secret : password
-____
-____
-Encrypt connection : uncheck it
+AWS Secret Key : password
 ____
 
 {blank}
 
-image::images/minio-config1.png[]
-
-In Source Setting -> Advanced Options :
-____
-Enable compatibility mode : check it
-____
-____
-Root Path : /warehouse
-____
+image::images/nessie-config2.png[]
 
 {blank}
-
-image::images/minio-config2.png[]
-
-{blank}
-
-In Source Setting -> Advanced Options :
 
 Add these properties :
 
@@ -156,9 +151,11 @@ ____
 Name: dremio.s3.compat | Value: true
 ____
 
+Uncheck “Encrypt Connection” Box 
+
 {blank}
 
-image::images/minio-config3.png[]
+image::images/nessie-config3.png[]
 
 {blank}
 
