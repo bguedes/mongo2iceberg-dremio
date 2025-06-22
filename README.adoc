@@ -192,6 +192,15 @@ ____
 Authentication Database: admin
 ____
 
+{blank}
+
+image::images/mongodb-config1.png[]
+
+{blank}
+
+image::images/mongodb-config2.png[]
+
+{blank}
 
 Let's connect to the database :
 
