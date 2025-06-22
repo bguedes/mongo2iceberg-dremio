@@ -161,7 +161,37 @@ image::images/nessie-config3.png[]
 
 == Step 3: Setup MongoDB
 
+create a S3 compatible datasource.
+On dremio UI choose 'Add source' and choose MongoDB :
+
 {blank}
+
+image::images/adding-mongodb-source.png[]
+
+{blank}
+
+Mongodb data source setup :
+
+{blank}
+____
+Name: mongodb
+____
+____
+Host: mongodb
+____
+____
+Port: 27017
+____
+____
+Username: root
+____
+____
+Password: mongodb
+____
+____
+Authentication Database: admin
+____
+
 
 Let's connect to the database :
 
@@ -191,33 +221,6 @@ db.products.insertMany([
     { RecordID: 10, ProductID: 110, Category: "Category A", weight: 180, color: "white", DateRecorded: "2023-01-10" }
 ]);
 ----
-{blank}
-
-Mongodb data source setup :
-
-____
-Name: products-catalog
-____
-____
-Host: mongodb
-____
-____
-Port: 27017
-____
-____
-Username : root
-____
-____
-Password : dremio
-____
-____
-Authentication Database : admin
-____
-
-{blank}
-
-image::images/mongodb-setup.png[]
-
 {blank}
 
 == Step 5: Manipulating Iceberg Table
