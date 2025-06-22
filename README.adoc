@@ -98,7 +98,7 @@ image::images/minio-createbucket3.png[]
 
 {blank}
 
-=== Create a S3 Datasource
+=== Create a Nessie Datasource
 
 Now that our minio is configured, we are going to create a S3 compatible datasource.
 On dremio UI choose 'Add source' :
@@ -162,55 +162,7 @@ image::images/minio-config3.png[]
 
 {blank}
 
-== Step 3: Setup databases
-
-=== Postgres
-
-{blank}
-
-Let launch postgres instance :
-
-[,console]
-----
-docker-compose up postgres
-----
-
-{blank}
-
-Let's connect to the database :
-
-[,console]
-----
-docker exec -it postgres psql -U myuser -d mydb
-----
-
-{blank}
-
-Create table and populate it :
-
-[,sql]
-----
-CREATE TABLE sales_data (
-  sale_id SERIAL PRIMARY KEY,
-  sale_date DATE NOT NULL,
-  product_id INT NOT NULL,
-  quantity INT NOT NULL,
-  total_amount NUMERIC(10, 2) NOT NULL);
-
-INSERT INTO sales_data (sale_date, product_id, quantity, total_amount) VALUES
-('2023-01-01', 101, 3, 450.00),
-('2023-01-02', 102, 2, 300.00),
-('2023-01-03', 103, 1, 150.00),
-('2023-01-04', 104, 5, 750.00),
-('2023-01-05', 105, 2, 200.00),
-('2023-01-06', 106, 4, 400.00),
-('2023-01-07', 107, 3, 350.00),
-('2023-01-08', 108, 1, 180.00),
-('2023-01-09', 109, 6, 900.00),
-('2023-01-10', 110, 2, 220.00);
-----
-
-=== MongoDB
+== Step 3: Setup MongoDB
 
 {blank}
 
@@ -253,34 +205,6 @@ db.products.insertMany([
 ----
 {blank}
 
-Postgres data source setup :
-
-____
-Name: sales
-____
-____
-Host: postgres
-____
-____
-Port: 5432
-____
-____
-Database Name : mydb
-____
-____
-Username : myuser
-____
-____
-Password : dremio
-____
-
-
-{blank}
-
-image::images/postgres-setup.png[]
-
-{blank}
-
 Mongodb data source setup :
 
 ____
@@ -305,60 +229,6 @@ ____
 {blank}
 
 image::images/mongodb-setup.png[]
-
-{blank}
-
-== Step 4: Data virtualisation
-
-{blank}
-
-image::images/create-space1.png[]
-
-{blank}
-
-image::images/create-space2.png[]
-
-{blank}
-
-image::images/dataviz1.png[]
-
-{blank}
-
-image::images/dataviz2.png[]
-
-{blank}
-
-image::images/dataviz3.png[]
-
-{blank}
-
-image::images/dataviz4.png[]
-
-{blank}
-
-image::images/dataviz5.png[]
-
-{blank}
-
-image::images/dataviz6.png[]
-
-{blank}
-
-image::images/dataviz7.png[]
-
-{blank}
-
-image::images/dataviz8.png[]
-
-{blank}
-
-image::images/dataviz9.png[]
-
-{blank}
-
-image::images/dataviz10.png[]
-
-{blank}
 
 {blank}
 
