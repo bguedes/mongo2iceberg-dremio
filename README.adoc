@@ -65,16 +65,6 @@ image::images/dremio-after-signup.png[]
 
 === Minio
 
-[,console]
-----
-docker-compose up minio
-----
-{blank}
-
-If everything goes well you should see the following result in your console:
-
-image::images/minio-ok.png[]
-
 {blank}
 
 We need to setup minio for the demo, follow this http://localhost:9001/login[link], use these parameters :
