@@ -166,15 +166,6 @@ image::images/minio-config3.png[]
 
 {blank}
 
-Let launch mongodb instance :
-
-[,console]
-----
-docker-compose up mongodb
-----
-
-{blank}
-
 Let's connect to the database :
 
 [,console]
